@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ApiController!{% endblock %}
+{% block title %}API Événements{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        body {
+            background-color: #eaeaec;
+            font-family: 'Poppins', Arial, sans-serif;
+            color: #333;
+            padding: 30px;
+        }
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/vincent/Desktop/BTS SIO 2/synfony/Evaluation/eventcampus/src/Controller/ApiController.php</code></li>
-        <li>Your template at <code>/Users/vincent/Desktop/BTS SIO 2/synfony/Evaluation/eventcampus/templates/api/index.html.twig</code></li>
-    </ul>
-</div>
+        .json-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button{
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    </style>
+
+    <h1>API - Tous les événements</h1>
+
+    <div class="json-container">
+        <pre>{{ evenements }}</pre>
+    </div>
+
+    <a href="{{ path('app_accueil') }}">
+        <button>Retour</button>
+    </a>
+
 {% endblock %}
+
