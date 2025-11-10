@@ -57,6 +57,56 @@ final class EvenementController extends AbstractController
         ]);
     }
 
+    #[Route('/statistiques', name: 'app_statistiques')]
+    public function statistiques(): Response
+    {
+        $evenements = $this->getEvenements();
+
+        //Nb d'event
+        $totalEvenements = count($evenements);
+
+        // Prix moyen
+        $totalPrix = array_sum(array_column($evenements, 'prix'));
+        $prixMoyen = $totalPrix / $totalEvenements;
+
+        // Total places
+        $totalPlacesDisponibles = array_sum(array_column($evenements, 'places_disponibles'));
+        $totalPlacesTotales = array_sum(array_column($evenements, 'places_totales'));
+
+        // Taux de remplissage global
+        $tauxRemplissage = (($totalPlacesTotales-$totalPlacesDisponibles) / $totalPlacesTotales) * 100;
+
+        // Nombre d'événements par catégorie
+        $evenementsParCategorie = [];
+        foreach ($evenements as $event) {
+            $cat = $event['categorie'];
+            if (!isset($evenementsParCategorie[$cat])) {
+                $evenementsParCategorie[$cat] = 0;
+            }
+            $evenementsParCategorie[$cat]++;
+        }
+
+        // Nombre d'événements par organisateur
+        $evenementsParOrganisateur = [];
+        foreach ($evenements as $event) {
+            $org = $event['organisateur'];
+            if (!isset($evenementsParOrganisateur[$org])) {
+                $evenementsParOrganisateur[$org] = 0;
+            }
+            $evenementsParOrganisateur[$org]++;
+        }
+
+        return $this->render('evenement/statistique/index.html.twig', [
+            'total_evenements' => $totalEvenements,
+            'prix_moyen' => $prixMoyen,
+            'total_places_disponibles' => $totalPlacesDisponibles,
+            'total_places_totales' => $totalPlacesTotales,
+            'taux_remplissage' => $tauxRemplissage,
+            'evenements_par_categorie' => $evenementsParCategorie,
+            'evenements_par_organisateur' => $evenementsParOrganisateur
+        ]);
+    }
+
     public function getEvenements():array{
         return [
             1 => [

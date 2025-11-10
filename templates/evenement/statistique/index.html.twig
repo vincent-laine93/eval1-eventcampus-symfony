@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background-color: #eaeaec;
+            font-family: 'Poppins', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            width: 99%;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .stats-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background-color: #fff;
+            flex: 1 1 200px;
+            min-width: 220px;
+            border-radius: 15px;
+            padding: 25px 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h2 {
+            color: #007BFF;
+            font-size: 28px;
+            margin: 0 0 10px;
+        }
+
+        .stat-card p {
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+            color: #555;
+        }
+
+        .return-btn {
+            display: block;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+        .return-btn:hover {
+            background: linear-gradient(135deg, #00B4D8, #007BFF);
+            transform: scale(1.05);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+    <h1>Statistiques des événements</h1>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <h2>{{ total_evenements }}</h2>
+            <p>Total d'événements</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ prix_moyen }} €</h2>
+            <p>Prix moyen</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ taux_remplissage|round(2) }}%</h2>
+            <p>Taux de remplissage global</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ total_places_disponibles }}</h2>
+            <p>Places disponibles</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ total_places_totales }}</h2>
+            <p>Places totales</p>
+        </div>
+
+        {% for cat, nb in evenements_par_categorie %}
+            <div class="stat-card">
+                <h2>{{ nb }}</h2>
+                <p>Événements {{ cat }}</p>
+            </div>
+        {% endfor %}
+
+        {% for org, nb in evenements_par_organisateur %}
+            <div class="stat-card">
+                <h2>{{ nb }}</h2>
+                <p>Événements {{ org }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_evenement') }}">
+        <button type="button" class="return-btn">Retour</button>
+    </a>
+{% endblock %}
