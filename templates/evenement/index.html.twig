@@ -113,6 +113,33 @@
             transform: scale(1.05);
         }
 
+        /*Api button*/
+        .api-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #6c757d;
+            color: white;
+        }
+
+        /*contenair btn*/
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+
+        .api-btn:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+
         a{
             text-decoration: none;
         }
@@ -144,11 +171,21 @@
                     <a href="{{ path('app_id', { id: event.id }) }}">
                         <button type="button" class="info-btn">Info</button>
                     </a>
+                    <a href="{{ path('app_api_id', { id: event.id }) }}">
+                        <button type="button" class="info-btn">JSON</button>
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a href={{ path("app_accueil") }}><button class="return-btn" type="button">Return</button></a>
+    <div class="button-container">
+        <a href="{{ path('app_accueil') }}">
+            <button class="return-btn" type="button">Return</button>
+        </a>
+        <a href="{{ path('app_api') }}">
+            <button class="api-btn" type="button">API JSON</button>
+        </a>
+    </div>
 
 {% endblock %}

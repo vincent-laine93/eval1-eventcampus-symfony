@@ -52,10 +52,10 @@
         }
     </style>
 
-    <h1>JSON - Tous les événements</h1>
+    <h1>JSON - {{ evenement.titre }}</h1>
 
     <div class="json-container">
-        <pre>{{ evenements }}</pre>
+        <pre>{{ evenementJson }}</pre>
     </div>
 
     <a href="{{ path('app_evenement') }}">
@@ -63,4 +63,3 @@
     </a>
 
 {% endblock %}
-

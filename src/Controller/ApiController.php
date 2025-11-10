@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ApiController extends AbstractController
 {
-    #[Route('/api', name: 'app_api')]
+    #[Route('/api/evenements', name: 'app_api')]
     public function index(): Response
     {
         $evenements = $this->getEvenements();
@@ -18,6 +18,33 @@ final class ApiController extends AbstractController
 //        echo "</pre>";
         return $this->render('api/index.html.twig', [
             'evenements' => $evenementsJson,
+        ]);
+    }
+
+    #[Route('/api/evenements/{id}', name: 'app_api_id')]
+    public function getApiId(int $id): Response
+    {
+        $evenements = $this->getEvenements();
+
+        // Filtrer l'événement correspondant à l'id
+        $evenementsFilter = array_filter($evenements, function ($event) use ($id) {
+            return isset($event['id']) && $event['id'] == $id;
+        }) ?? null;
+
+        if (!$evenementsFilter) {
+            throw new NotFoundHttpException("Cet événement n'existe pas.");
+        }
+
+        $evenement = array_shift($evenementsFilter);
+        $evenementJson = $this->json($evenement);
+
+
+//        echo "<pre>";
+//        var_dump($evenementsJson);
+//        echo "</pre>";
+        return $this->render('api/id/index.html.twig', [
+            'evenementJson' => $evenementJson,
+            'evenement' => $evenement,
         ]);
     }
 
