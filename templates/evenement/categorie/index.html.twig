@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des evenement{% endblock %}
+
+{% block body %}
+    <h1>Voici la liste des evenement de type : {{ categorie }}</h1>
+    {% for event in evenements %}
+        <p>{{ event.titre }}</p>
+    {% endfor %}
+    <br>
+    <a href={{ path("app_evenement") }}><button type="button">Return</button></a>
+{% endblock %}

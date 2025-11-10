@@ -1,20 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EvenementController!{% endblock %}
+{% block title %}Liste des evenement{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    </style>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/vincent/Desktop/BTS SIO 2/synfony/Evaluation/eventcampus/src/Controller/EvenementController.php</code></li>
-        <li>Your template at <code>/Users/vincent/Desktop/BTS SIO 2/synfony/Evaluation/eventcampus/templates/evenement/index.html.twig</code></li>
-    </ul>
-</div>
+    <h1> Liste complète des événements :</h1>
+    {% for event in evenements%}
+        <p>{{ event.titre }}
+            <a href={{ path('app_id',{id: event.id}) }}>
+                <button type="button">Info</button>
+            </a>
+        </p>
+    {% endfor%}
+    <h1>Trie par categorie</h1>
+    {% for cat in categories%}
+        <a href={{ path("app_categorie",{categorie: cat}) }}>{{ cat }}</a>
+    {% endfor%}
+
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Info d'un event{% endblock %}
+
+{% block body %}
+    <h1>{{ evenement.titre }}</h1>
+    <p>Description : {{ evenement.description }}</p>
+    <p>Date de debut : {{ evenement.date_debut }}</p>
+    <p>Date de fin : {{ evenement.date_fin }}</p>
+    <p>Lieu : {{ evenement.lieu }}</p>
+    <p>Prix : {{ evenement.prix }}</p>
+    <p>Place disponible : {{ evenement.places_disponibles }}</p>
+    <p>Places totales : {{ evenement.places_totales }}</p>
+    <p>Statut : {{ evenement.statut }}</p>
+    <br>
+    <a href={{ path("app_evenement") }}><button type="button">Return</button></a>
+
+{% endblock %}
