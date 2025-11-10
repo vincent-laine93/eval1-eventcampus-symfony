@@ -3,16 +3,100 @@
 {% block title %}Info d'un event{% endblock %}
 
 {% block body %}
-    <h1>{{ evenement.titre }}</h1>
-    <p>Description : {{ evenement.description }}</p>
-    <p>Date de debut : {{ evenement.date_debut }}</p>
-    <p>Date de fin : {{ evenement.date_fin }}</p>
-    <p>Lieu : {{ evenement.lieu }}</p>
-    <p>Prix : {{ evenement.prix }}</p>
-    <p>Place disponible : {{ evenement.places_disponibles }}</p>
-    <p>Places totales : {{ evenement.places_totales }}</p>
-    <p>Statut : {{ evenement.statut }}</p>
-    <br>
-    <a href={{ path("app_evenement") }}><button type="button">Return</button></a>
+    <style>
+        body {
+            background-color: #eaeaec;
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin: 40px 0 30px;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        .event-card {
+            background-color: #fff;
+            width: 60%;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .event-card p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .event-card p span {
+            font-weight: 600;
+            color: #007BFF;
+        }
+
+        .event-card p:last-child {
+            border: none;
+        }
+
+        /* Boutton Retour */
+        .return-btn {
+            display: block;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .return-btn:hover {
+            background: linear-gradient(135deg, #00B4D8, #007BFF);
+            transform: scale(1.05);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+
+    </style>
+
+    <h1>{{ evenement.titre }}</h1>
+
+    <div class="event-card">
+        <p><span>Description :</span> {{ evenement.description }}</p>
+        <p><span>Date de début :</span> {{ evenement.date_debut }}</p>
+        <p><span>Date de fin :</span> {{ evenement.date_fin }}</p>
+        <p><span>Lieu :</span> {{ evenement.lieu }}</p>
+        <p><span>Prix :</span> {{ evenement.prix }} €</p>
+        <p><span>Places disponibles :</span> {{ evenement.places_disponibles }}</p>
+        <p><span>Places totales :</span> {{ evenement.places_totales }}</p>
+        <p><span>Statut :</span> {{ evenement.statut }}</p>
+    </div>
+
+    <a href="{{ path('app_evenement') }}">
+        <button type="button" class="return-btn">Retour</button>
+    </a>
 {% endblock %}
+

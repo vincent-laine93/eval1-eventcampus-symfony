@@ -4,27 +4,31 @@
 
 {% block body %}
 <style>
-    body{
-        background-color: #eaeaec;
-    }
-    #process {
-        padding-bottom: 200px;
-        padding-top: 10px;
-        width: 100%;
+    body {
+        font-family: 'Poppins', Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
     }
 
     /*au dessus des step*/
 
     .process-description {
-        width: 100%;
+        width: 97%;
+        margin: auto;
         text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #00B4D8, #007BFF);
+
         h1{
             font-size: 36px;
-            margin: 80px 0 20px 0;
+            color: white;
+            letter-spacing: 1px;
         }
         p{
-            font-size: 20px;
-            margin: 0 0 40px 0;
+            font-size: 18px;
+            color: white;
         }
     }
 
@@ -55,7 +59,29 @@
         img,h2,p{
             margin-left: 25px;
             margin-top: 25px;
+            color: black;
         }
+    }
+
+    /*boutton*/
+    center a button {
+        background: linear-gradient(135deg, #007BFF, #00B4D8);
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 12px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+    }
+
+    center a button:hover {
+        background: linear-gradient(135deg, #00B4D8, #007BFF);
+        transform: scale(1.05);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
     }
 </style>
 

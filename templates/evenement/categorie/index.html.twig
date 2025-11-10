@@ -3,10 +3,91 @@
 {% block title %}Liste des evenement{% endblock %}
 
 {% block body %}
-    <h1>Voici la liste des evenement de type : {{ categorie }}</h1>
-    {% for event in evenements %}
-        <p>{{ event.titre }}</p>
-    {% endfor %}
-    <br>
-    <a href={{ path("app_evenement") }}><button type="button">Return</button></a>
+    <style>
+
+        body {
+            background-color: #eaeaec;
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Titre */
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            font-size: 28px;
+            margin: 40px 0 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Liste des evenement */
+        .event-list {
+            width: 60%;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 25px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .event-list p {
+            font-size: 18px;
+            margin: 0;
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .event-list p:last-child {
+            border: none;
+        }
+
+        /* Boutton retour */
+        .return-btn {
+            display: block;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none; /* empêche le soulignement du texte */
+        }
+
+        .return-btn:hover {
+            background: linear-gradient(135deg, #00B4D8, #007BFF);
+            transform: scale(1.05);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
+
+    <h1>Voici la liste des événements de type : {{ categorie }}</h1>
+
+    <div class="event-list">
+        {% for event in evenements %}
+            <p>{{ event.titre }}</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_evenement') }}">
+        <button type="button" class="return-btn">Retour</button>
+    </a>
+
 {% endblock %}

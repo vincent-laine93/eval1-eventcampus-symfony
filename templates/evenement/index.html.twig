@@ -4,20 +4,151 @@
 
 {% block body %}
     <style>
+        /*navbar*/
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        #navbar .left h1 {
+            font-size: 22px;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        #navbar .right {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        #navbar .right a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        /*Titre*/
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        /* Tableau */
+        .event-table {
+            width: 70%;
+            margin: 0 auto 40px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-table thead {
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            color: white;
+        }
+
+        .event-table th, .event-table td {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .event-table tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .event-table tbody tr:hover {
+            background: #f1f8ff;
+            transform: scale(1.01);
+        }
+
+        /* Boutton info */
+        .info-btn {
+            background: linear-gradient(135deg, #007BFF, #00B4D8);
+            border: none;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .info-btn:hover {
+            background: linear-gradient(135deg, #00B4D8, #007BFF);
+            transform: scale(1.05);
+        }
+
+        /* Boutton retour */
+        .return-btn {
+            display: block;
+            margin: 0 auto 50px;
+            padding: 10px 22px;
+            border: none;
+            background: #6c757d;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .return-btn:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+
+        a button {
+            text-decoration: none;
+        }
 
     </style>
-
+    <div id="navbar">
+        <div class="left">
+            <h1>Trie par categorie</h1>
+        </div>
+        <div class="right">
+            {% for cat in categories%}
+                <a href={{ path("app_categorie",{categorie: cat}) }}>{{ cat }}</a>
+            {% endfor%}
+        </div>
+    </div>
     <h1> Liste complète des événements :</h1>
-    {% for event in evenements%}
-        <p>{{ event.titre }}
-            <a href={{ path('app_id',{id: event.id}) }}>
-                <button type="button">Info</button>
-            </a>
-        </p>
-    {% endfor%}
-    <h1>Trie par categorie</h1>
-    {% for cat in categories%}
-        <a href={{ path("app_categorie",{categorie: cat}) }}>{{ cat }}</a>
-    {% endfor%}
+    <table class="event-table">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for event in evenements %}
+            <tr>
+                <td>{{ event.titre }}</td>
+                <td>
+                    <a href="{{ path('app_id', { id: event.id }) }}">
+                        <button type="button" class="info-btn">Info</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href={{ path("app_accueil") }}><button class="return-btn" type="button">Return</button></a>
 
 {% endblock %}
